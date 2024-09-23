@@ -8,23 +8,24 @@
         <script src="lib/createjs-2015.05.21.min.js"></script>
         <style>
             .heart {
-                width: 200px;  /* 缩小尺寸，更简洁 */
+                width: 200px;
                 height: 180px;
                 position: relative;
                 margin: 0 auto;
-                transform: translateY(30px); /* 下移调整 */
+                transform: translateY(30px);
+                transition: opacity 2s ease; /* 设置渐隐动画 */
+                cursor: pointer; /* 鼠标变成手型 */
             }
 
             .heart::before, .heart::after {
                 content: "";
                 width: 100px;
                 height: 160px;
-                background: linear-gradient(135deg, #FF8A80, #FF5252); /* 使用渐变色 */
+                background: linear-gradient(135deg, #FF8A80, #FF5252);
                 border-radius: 100px 100px 0 0;
                 position: absolute;
                 top: 0;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
-                transition: transform 0.3s ease; /* 平滑的过渡效果 */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
 
             .heart::before {
@@ -39,13 +40,9 @@
                 transform-origin: 100% 100%;
             }
 
-            .heart:hover::before, .heart:hover::after {
-                transform: scale(1.05); /* 鼠标悬停时微微放大 */
-            }
-
             body {
-                font-family: Arial, sans-serif; /* 简约字体 */
-                background-color: #f5f5f5; /* 柔和背景色 */
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
             }
 
             header {
@@ -63,14 +60,23 @@
             }
         </style>
     </head>
-    <body onload="init();">
+    <body>
         <header>My Deer</header>
-        
+
         <!-- 心形图案 -->
-        <div class="heart"></div>
-        
+        <div class="heart" id="heart"></div>
+
         <footer>.</footer>
+
+        <script>
+            document.getElementById("heart").addEventListener("click", function() {
+                var heart = this;
+                heart.style.opacity = "0"; // 设置为渐隐
+                setTimeout(function() {
+                    heart.style.opacity = "1"; // 2秒后恢复
+                    window.location.href = "https://520.luping.site/"; // 跳转到指定网址
+                }, 2000);
+            });
+        </script>
     </body>
-    <script src="configuration.js"></script>
-    <script src="script.js"></script>
 </html>
