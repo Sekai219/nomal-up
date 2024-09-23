@@ -7,15 +7,21 @@
     <link rel="stylesheet" href="styles.css">
     <script src="lib/createjs-2015.05.21.min.js"></script>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #fff;
+            overflow: hidden; /* 隐藏滚动条 */
+        }
+
         .heart {
             width: 200px;
             height: 180px;
             position: relative;
             margin: 0 auto;
             transform: translateY(30px);
-            transition: opacity 2s ease; /* 设置渐隐动画 */
             cursor: pointer; /* 鼠标变成手型 */
-            animation: bounce 2s infinite; /* 添加跳动动画 */
+            animation: bounce 2s infinite; /* 跳动动画 */
         }
 
         .heart::before, .heart::after {
@@ -41,26 +47,20 @@
             transform-origin: 100% 100%;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #fff; /* 修改字体颜色 */
-        }
-
         header {
             text-align: center;
             padding: 20px;
             font-size: 24px;
-            font-weight: bold; /* 加粗 */
+            font-weight: bold;
             color: #333;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 添加阴影 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         footer {
             text-align: center;
             margin-top: 50px;
             font-size: 14px;
-            color: #fff; /* 修改字体颜色 */
+            color: #fff;
         }
 
         @keyframes bounce {
@@ -72,6 +72,25 @@
             }
             60% {
                 transform: translateY(-10px);
+            }
+        }
+
+        @keyframes expand {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(10); /* 扩展到全屏 */
+                opacity: 0; /* 最终消失 */
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1; /* 恢复可见 */
             }
         }
     </style>
@@ -87,11 +106,19 @@
     <script>
         document.getElementById("heart").addEventListener("click", function() {
             var heart = this;
-            heart.style.opacity = "0"; // 设置为渐隐
+            heart.style.animation = "none"; // 移除跳动动画
+            heart.style.animation = "expand 1.5s forwards"; // 添加扩展动画
+            
             setTimeout(function() {
-                heart.style.opacity = "1"; // 2秒后恢复
+                heart.style.opacity = "0"; // 消失
+            }, 1500); // 与扩展动画时间一致
+
+            setTimeout(function() {
+                heart.style.transform = "scale(1)"; // 恢复原始大小
+                heart.style.opacity = "1"; // 恢复可见
+                heart.style.animation = "fadeIn 1s forwards"; // 添加浮现动画
                 window.location.href = "https://520.luping.site/"; // 跳转到指定网址
-            }, 2000);
+            }, 3000); // 在心形完全消失后跳转
         });
     </script>
 </body>
