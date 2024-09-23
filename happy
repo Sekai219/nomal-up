@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Page</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="lib/createjs-2015.05.21.min.js"></script>
+        <style>
+            .heart {
+                width: 320px;
+                height: 320px;
+                position: relative;
+                margin: 0 auto;
+                transform: translateY(30px); /* 使用translateY下移 */
+            }
+
+            .heart::before, .heart::after {
+                content: "";
+                width: 160px;
+                height: 240px;
+                background: #FF6666; /* 调淡红色，不透明 */
+                border-radius: 160px 160px 0 0;
+                position: absolute;
+                top: 0;
+            }
+
+            .heart::before {
+                left: 160px;
+                transform: rotate(-45deg);
+                transform-origin: 0 100%;
+            }
+
+            .heart::after {
+                left: 0;
+                transform: rotate(45deg);
+                transform-origin: 100% 100%;
+            }
+        </style>
+    </head>
+    <body onload="init();">
+        <header></header>
+        <!-- 红色爱心替代原来的canvas -->
+        <div class="heart"></div>
+        <footer></footer>
+    </body>
+    <script src="configuration.js"></script>
+    <script src="script.js"></script>
+</html>
