@@ -8,25 +8,27 @@
         <script src="lib/createjs-2015.05.21.min.js"></script>
         <style>
             .heart {
-                width: 320px;
-                height: 320px;
+                width: 200px;  /* 缩小尺寸，更简洁 */
+                height: 180px;
                 position: relative;
                 margin: 0 auto;
-                transform: translateY(30px); /* 使用translateY下移 */
+                transform: translateY(30px); /* 下移调整 */
             }
 
             .heart::before, .heart::after {
                 content: "";
-                width: 160px;
-                height: 240px;
-                background: #FF6666; /* 调淡红色，不透明 */
-                border-radius: 160px 160px 0 0;
+                width: 100px;
+                height: 160px;
+                background: linear-gradient(135deg, #FF8A80, #FF5252); /* 使用渐变色 */
+                border-radius: 100px 100px 0 0;
                 position: absolute;
                 top: 0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+                transition: transform 0.3s ease; /* 平滑的过渡效果 */
             }
 
             .heart::before {
-                left: 160px;
+                left: 100px;
                 transform: rotate(-45deg);
                 transform-origin: 0 100%;
             }
@@ -36,13 +38,38 @@
                 transform: rotate(45deg);
                 transform-origin: 100% 100%;
             }
+
+            .heart:hover::before, .heart:hover::after {
+                transform: scale(1.05); /* 鼠标悬停时微微放大 */
+            }
+
+            body {
+                font-family: Arial, sans-serif; /* 简约字体 */
+                background-color: #f5f5f5; /* 柔和背景色 */
+            }
+
+            header {
+                text-align: center;
+                padding: 20px;
+                font-size: 24px;
+                color: #333;
+            }
+
+            footer {
+                text-align: center;
+                margin-top: 50px;
+                font-size: 14px;
+                color: #666;
+            }
         </style>
     </head>
     <body onload="init();">
-        <header></header>
-        <!-- 红色爱心替代原来的canvas -->
+        <header>My Deer</header>
+        
+        <!-- 心形图案 -->
         <div class="heart"></div>
-        <footer></footer>
+        
+        <footer>.</footer>
     </body>
     <script src="configuration.js"></script>
     <script src="script.js"></script>
