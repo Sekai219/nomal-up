@@ -1,82 +1,98 @@
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Page</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="lib/createjs-2015.05.21.min.js"></script>
-        <style>
-            .heart {
-                width: 200px;
-                height: 180px;
-                position: relative;
-                margin: 0 auto;
-                transform: translateY(30px);
-                transition: opacity 2s ease; /* 设置渐隐动画 */
-                cursor: pointer; /* 鼠标变成手型 */
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="lib/createjs-2015.05.21.min.js"></script>
+    <style>
+        .heart {
+            width: 200px;
+            height: 180px;
+            position: relative;
+            margin: 0 auto;
+            transform: translateY(30px);
+            transition: opacity 2s ease; /* 设置渐隐动画 */
+            cursor: pointer; /* 鼠标变成手型 */
+            animation: bounce 2s infinite; /* 添加跳动动画 */
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            width: 100px;
+            height: 160px;
+            background: linear-gradient(135deg, #FF8A80, #FF5252);
+            border-radius: 100px 100px 0 0;
+            position: absolute;
+            top: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .heart::before {
+            left: 100px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #fff; /* 修改字体颜色 */
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold; /* 加粗 */
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 添加阴影 */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #fff; /* 修改字体颜色 */
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
             }
-
-            .heart::before, .heart::after {
-                content: "";
-                width: 100px;
-                height: 160px;
-                background: linear-gradient(135deg, #FF8A80, #FF5252);
-                border-radius: 100px 100px 0 0;
-                position: absolute;
-                top: 0;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            40% {
+                transform: translateY(-15px);
             }
-
-            .heart::before {
-                left: 100px;
-                transform: rotate(-45deg);
-                transform-origin: 0 100%;
+            60% {
+                transform: translateY(-10px);
             }
+        }
+    </style>
+</head>
+<body>
+    <header>My Deer</header>
 
-            .heart::after {
-                left: 0;
-                transform: rotate(45deg);
-                transform-origin: 100% 100%;
-            }
+    <!-- 心形图案 -->
+    <div class="heart" id="heart"></div>
 
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f5f5f5;
-            }
+    <footer>.</footer>
 
-            header {
-                text-align: center;
-                padding: 20px;
-                font-size: 24px;
-                color: #333;
-            }
-
-            footer {
-                text-align: center;
-                margin-top: 50px;
-                font-size: 14px;
-                color: #666;
-            }
-        </style>
-    </head>
-    <body>
-        <header>My Deer</header>
-
-        <!-- 心形图案 -->
-        <div class="heart" id="heart"></div>
-
-        <footer>.</footer>
-
-        <script>
-            document.getElementById("heart").addEventListener("click", function() {
-                var heart = this;
-                heart.style.opacity = "0"; // 设置为渐隐
-                setTimeout(function() {
-                    heart.style.opacity = "1"; // 2秒后恢复
-                    window.location.href = "https://520.luping.site/"; // 跳转到指定网址
-                }, 2000);
-            });
-        </script>
-    </body>
+    <script>
+        document.getElementById("heart").addEventListener("click", function() {
+            var heart = this;
+            heart.style.opacity = "0"; // 设置为渐隐
+            setTimeout(function() {
+                heart.style.opacity = "1"; // 2秒后恢复
+                window.location.href = "https://520.luping.site/"; // 跳转到指定网址
+            }, 2000);
+        });
+    </script>
+</body>
 </html>
